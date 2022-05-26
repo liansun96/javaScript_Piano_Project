@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <style>
-        .key{
-            width: 80px;
-            height: 500px;
-            background-color: #857f7f;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -20,14 +14,30 @@
         <div class="row">
             <div class="col-12 col-lg-7">
                 <div class="row my-5 d-flex justify-content-around ms-5">
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('C4')">C4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('D4')">D4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('E4')">E4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('F4')">F4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('G4')">G4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('A4')">A4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('B4')">B4</div>
-                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('C5')">C5</div>
+                    <div class="key keyC4 text-light fw-bolder text-center my-5 " onclick="run('C4')">
+                        <p>C4</p>
+                    </div>
+                    <div class="key keyD4 text-light fw-bolder text-center my-5 " onclick="run('D4')">
+                        <p>D4</p>
+                    </div>
+                    <div class="key keyE4 text-light fw-bolder text-center my-5 " onclick="run('E4')">
+                        <p>E4</p>
+                    </div>
+                    <div class="key keyF4 text-light fw-bolder text-center my-5 " onclick="run('F4')">
+                        <p>F4</p>
+                    </div>
+                    <div class="key keyG4 text-light fw-bolder text-center my-5 " onclick="run('G4')">
+                        <p>G4</p>
+                    </div>
+                    <div class="key keyA4 text-light fw-bolder text-center my-5 " onclick="run('A4')">
+                        <p>A4</p>
+                    </div>
+                    <div class="key keyB4 text-light fw-bolder text-center my-5 " onclick="run('B4')">
+                        <p>B4</p>
+                    </div>
+                    <div class="key text-light fw-bolder text-center my-5 " onclick="run('C5')">
+                        <p>C5</p>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-lg-5">
@@ -48,70 +58,6 @@
 
 
 
-    <script>
-
-        let chords = document.getElementById("chords");
-        let pianoMemory = [];
-        let list = document.getElementById("list");
-
-        function run(x){
-            let a = new Audio(`sounds/${x}.mp3`);
-            a.play();
-            chords.value += x + ",";
-            console.log(`U play ${x} key`);
-        }
-
-        function saveChords(){
-            let input = chords.value;
-            pianoMemory.push(input);
-            console.log(`${input} is saved in memory`);
-            chords.value = "";
-            list.innerHTML="";
-            pianoMemory.map(function (el,index){
-                list.innerHTML += `<li class="list-group-item overflow-auto mb-3 d-flex justify-content-between align-content-center">
-                                    ${el} <button class="btn btn-sm btn-outline-secondary" onclick="rePlay(${index})">
-                                    Replay</button></li>`;
-            })
-        }
-
-        let m = ["C4","E4","A4"];
-        function runMemory(arr,delay=500){
-            let x= delay;
-            arr.map(function (el,index){
-                setTimeout(run,x,el);
-                x += delay;
-            })
-        }
-
-        function rePlay(x){
-            let current = pianoMemory[x].split(",");
-            current.pop();
-            runMemory(current);
-            chords.value = "";
-        }
-
-        document.addEventListener("keyup",function(e){
-            console.log(e.keyCode);
-            let current = e.keyCode;
-            if (current == 65){
-                run('C4');
-            }else if(current == 83){
-                run('D4');
-            }else if(current == 68){
-                run('E4');
-            }else if(current == 70){
-                run('F4');
-            }else if(current == 74){
-                run('G4');
-            }else if(current == 75){
-                run ('A4');
-            }else if(current == 76){
-                run('B4');
-            }else if(current == 186){
-                run('C5');
-            }
-        })
-
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
